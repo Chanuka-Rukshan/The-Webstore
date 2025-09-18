@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Webstore Single Product View</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/output.css">
+        <script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
+        <link rel="shortcut icon" href="resources/Logo.svg" type="image/x-icon">
+    </head>
+
+    <body onload="loadData();">
+
+        <!-- Header -->
+        <div id="header-placeholder"></div>
+        <!-- Header-->
+
+
+        <div class="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8 font-sans text-gray-800">
+            <!-- Image & Thumbnails -->
+            <div class="flex flex-col items-center justify-center gap-4">
+                <!-- Main Image -->
+                <div class="h-10/12 w-10/12 shadow-lg border border-[#Ba3F3F] rounded-2xl flex items-center justify-center">
+                    <img id="mainImage" src="" alt="Product Image" class="rounded-lg h-96 w-auto">
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <div onclick="changeImage(this)"
+                         class="shadow-lg h-40 w-40  border border-[#Ba3F3F] hover:border-black rounded-2xl flex items-center justify-center cursor-pointer">
+                        <img src="" alt="Product Image" class="h-28 w-auto" id="image_1">
+                    </div>
+                    <div onclick="changeImage(this)"
+                         class="shadow-lg h-40 w-40  border border-[#Ba3F3F] hover:border-black rounded-2xl flex items-center justify-center cursor-pointer">
+                        <img src="" alt="Product Image" class=" h-28 w-auto" id="image_2">
+                    </div>
+                    <div onclick="changeImage(this)"
+                         class="shadow-lg h-40 w-40  border border-[#Ba3F3F] hover:border-black rounded-2xl flex items-center justify-center cursor-pointer">
+                        <img src="" alt="Product Image" class=" h-28 w-auto" id="image_3">
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div>
+                <h2 class="text-xl font-semibold mb-2" id="product_title">Wireless Earbuds Bluetooth Headphones, Ear Buds with Deep Bass, 40H
+                    Long Playtime, Power Display, IPX7 Waterproof in Ear Earphone with Mic for Phone Tablet Sports Workout,
+                    Black</h2>
+                <p class="text-lg text-black font-bold mb-4 mt-6">One Item Price : <span
+                        class="text-[#B43F3F]" >Rs: &nbsp;<span class="text-[#B43F3F]" id="product_price">19.99</span></span></p>
+
+                <ul class="space-y-2 text-sm mb-4">
+                    <li><span class="font-semibold">Category :</span> &nbsp;<span  id="product_category"></span></li>
+                    <li><span class="font-semibold">Brand :</span>&nbsp;<span  id="product_brand"></span></li>
+                    <li><span class="font-semibold">Model :</span> &nbsp;<span  id="product_model"></span></li>
+                    <li><span class="font-semibold">Quality :</span> &nbsp;<span  id="product_quality"></span></li>
+
+                </ul>
+
+                <div class="mb-4 mt-3">
+                    <label class="font-semibold flex items-center gap-2">
+                        <!-- Color Dot -->
+                        Color :
+                        <span data-color="black"
+                              id="color_background"
+                              class="color-box w-5 h-5 rounded-full border border-gray-300 bg-black cursor-pointer">
+                        </span>
+                        <!-- Text -->
+
+                    </label>
+                </div>
+                <div class="mb-4 mt-3">
+                    <!-- Title -->
+
+                    <div class="text-sm font-semibold mb-2 flex items-center gap-2">
+                        <!-- Button First -->
+                        Storage :
+                        <button id="product_storage"
+                                class="px-4 py-2 border border-gray-400 rounded-lg text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black">
+                            128GB
+                        </button>
+                        <!-- Then Label -->
+
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="mb-4 flex flex-col gap-2">
+                    <label class="font-semibold">Qty :</label>
+
+                    <!-- Counter Control -->
+                    <div class="flex items-center border border-gray-300 rounded overflow-hidden w-fit">
+                        <button id="decreaseBtn" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-sm">-</button>
+                        <input id="qtyInput" type="text" value="1" min="1" disabled
+                               class="w-12 text-center outline-none border-l border-r border-gray-300" />
+                        <button id="increaseBtn" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-sm" >+</button>
+                    </div>
+
+                    <!-- Stock Info -->
+                    <p class="text-green-600 text-sm">In Stock <span class="text-green-600 text-sm" id="product_qty"></span> Items</p>
+                </div>
+
+
+
+                <p class="text-lg font-semibold mb-2 mt-3">Shipping Fee :  <span class="text-[#ffb929]" id="product_shipping"></span></p>
+                <p class="text-lg font-bold mb-2 mt-3">Total Products Price : <span class="text-[#ffb929]">Rs <span class="text-[#ffb929]" id="total_price"></span></span></p>
+
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="text-yellow-400 text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <span class="text-sm">(4700)</span>
+                </div>
+
+                <button class="bg-[#B43F3F] w-full hover:bg-red-700 text-white px-6 py-2 rounded font-medium">Buy Now
+                    Product</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 w-full">
+                    <button class="w-full border border-[#B43F3F] text-red-500 py-2 rounded hover:bg-red-50 transition" id="add-to-cart-main">Add
+                        To
+                        Cart</button>
+                    <button
+                        class="w-full border border-[#ffb929] text-[#ffb929] py-2 rounded hover:bg-gray-100 transition">Add
+                        To
+                        Watchlist</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flex items-center my-6 w-full container justify-center mx-auto mb-6">
+            <hr class="flex-grow border-t-1 border-[#B43F3F]" />
+
+        </div>
+
+        <div class="container w-full mx-auto p-6 bg-white shadow-xs rounded-lg">
+            <h2 class="text-xl font-semibold mb-6">About this item</h2>
+
+            <ul class="space-y-4 text-gray-700">
+                <li class="flex items-start">
+
+                    <span>
+                        <strong>Long-Lasting Battery :</strong> Enjoy up to 40 hours of playtime with the charging case, and
+                        a 15-minute fast charge provides 90 minutes of uninterrupted audio.
+                    </span>
+                </li>
+                <li class="flex items-start">
+
+                    <span>
+                        <strong>Seamless Connectivity :</strong> Equipped with the latest Bluetooth 5.3 technology, these
+                        earbuds offer instant pairing, ultra-low latency and a stable connection within a 15-meter range.
+                    </span>
+                </li>
+                <li class="flex items-start">
+
+                    <span>
+                        <strong>Immersive Sound Quality :</strong> Experience powerful deep bass and detailed audio courtesy
+                        of the 13.2mm four-magnet dynamic driver and professional sound tuning.
+                    </span>
+                </li>
+                <li class="flex items-start">
+
+                    <span>
+                        <strong>Comfortable Fit :</strong> Weighing just 4.4g each, these earbuds feature soft ear tips in
+                        three sizes and contoured design for a secure and comfortable fit during extended wear.
+                    </span>
+                </li>
+            </ul>
+
+            <div class="mt-4">
+                <a href="#" class="text-blue-500 hover:underline">See more product details</a>
+            </div>
+        </div>
+
+        <div class="flex items-center my-6 w-full container justify-center mx-auto mb-6">
+            <hr class="flex-grow border-t-1 border-[#B43F3F]" />
+
+        </div>
+
+        <div class="container w-full mx-auto p-6 bg-white shadow-xs rounded-lg">
+            <h2 class="text-xl font-semibold mb-6">Comment This Item</h2>
+
+            <!-- Second Carousel -->
+            <section>
+                <div class=" container mx-auto py-7 ">
+
+
+                    <div class="  flex items-center justify-center p-3 ">
+                        <div class="max-w-7xl w-full mx-auto ">
+
+
+                            <!-- Start Slider -->
+                            <div data-hs-carousel='{
+                                 "loadingClasses": "opacity-0",
+                                 "isAutoPlay": true,
+                                 "isLoop": true,
+                                 "autoPlayInterval": 3000,
+                                 "slidesQty": {
+                                 "xs": 2,
+                                 "sm": 3,
+                                 "md": 4,
+                                 "lg": 8
+                                 }
+                                 }' class="relative mb-10">
+
+                                <div class="w-full overflow-hidden  rounded-lg hs-carousel ">
+                                    <div class="relative -mx-1 ">
+                                        <div class="flex transition-transform duration-700 hs-carousel-body flex-nowrap">
+                                            <!-- Slide Item 1 -->
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer rounded-lg overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/61e0wki8E8L.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <!-- Repeat same block for more slides -->
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer rounded-lg overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/61ongRwDq-L.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer rounded-lg overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/610EPQQXjtL._AC_SL1500_.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer rounded-lg overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/71KPsMf+RRL.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer rounded-lg overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/71vYHBs4HnL.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer overflow-hidden rounded-lg transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src=""
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer overflow-hidden rounded-lg transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/610EPQQXjtL._AC_SL1500_.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer overflow-hidden rounded-lg transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/61Tg9O0VCoL._AC_SL1500_.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="px-1 hs-carousel-slide">
+                                                <div class="grid justify-center h-full">
+                                                    <div
+                                                        class="relative group h-32 w-32 bg-[#eaeaea] mx-auto cursor-pointer overflow-hidden rounded-lg transition duration-300 ease-in-out bg-opacity-60">
+                                                        <img src="resources/New folder/01/71xIWZ78g7L._AC_SL1500_.jpg"
+                                                             class="absolute inset-0 w-full h-full object-cover transition duration-200" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Add more slide items as needed -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Navigation buttons -->
+                                <button type="button"
+                                        class="absolute start-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center text-gray-800 hs-carousel-prev hover:bg-gray-200/80 focus:outline-none rounded-full w-8 h-8">
+                                    <img src="resources/cursol/icons8-arrow-50 (1).png" alt="">
+                                    <span class="sr-only">Previous</span>
+                                </button>
+
+                                <button type="button"
+                                        class="absolute end-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center text-gray-800 hs-carousel-next hover:bg-gray-200/80 focus:outline-none rounded-full w-8 h-8">
+                                    <img src="resources/cursol/icons8-arrow-50.png" alt="">
+                                    <span class="sr-only">Next</span>
+                                </button>
+
+                                <!-- Dots (optional) -->
+                                <div
+                                    class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex justify-center space-x-2 hs-carousel-pagination">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Slider -->
+
+                </div>
+            </section>
+            <!-- Second Carousel -->
+
+            <div class="w-full mx-auto space-y-8 p-4">
+                <!-- Review 1 -->
+                <div class="border-b pb-6">
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-semibold">
+                            D</div>
+                        <div>
+                            <p class="font-semibold">Daniel K</p>
+                            <div class="flex items-center text-yellow-500">
+                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                <span class="ml-2 font-medium text-black">Delivered what I need – sold</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Reviewed in the United States on March 11, 2025</p>
+                    <p class="text-sm text-gray-500">Color : Black</p>
+                    <p class="mt-3 text-gray-700">
+                        Great earbuds for what I needed. Sleek case with dual indicator on battery charge as well as quick
+                        way charge directly from the case...
+                    </p>
+                    <p class="mt-2 text-sm text-gray-600">6 people found this helpful</p>
+                    <div class="flex space-x-4 mt-2">
+                        <button class="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-100">Helpful</button>
+                        <button class="text-sm text-gray-600 hover:underline">Report</button>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="border-b pb-6">
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-semibold">
+                            S</div>
+                        <div>
+                            <p class="font-semibold">Sean</p>
+                            <div class="flex items-center text-yellow-500">
+                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                <span class="ml-2 font-medium text-black">Great quality earbuds and amazing value</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Reviewed in the United States on March 7, 2025</p>
+                    <p class="text-sm text-gray-500">Color : Black</p>
+                    <p class="mt-3 text-gray-700">
+                        These earbuds arrived quickly and already charged at 91% so immediately was able to start using them
+                        which was nice...
+                    </p>
+                    <div class="flex space-x-4 mt-2">
+                        <button class="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-100">Helpful</button>
+                        <button class="text-sm text-gray-600 hover:underline">Report</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex items-center my-6 w-full container justify-center mx-auto mb-6">
+            <hr class="flex-grow border-t-1 border-[#B43F3F]" />
+
+        </div>
+        <div class="container w-full mx-auto p-6 bg-white shadow-xs rounded-lg">
+            <h2 class="text-xl font-semibold mb-6">Product Related to this item</h2>
+
+            <!-- Third -->
+            <section class="  ">
+
+
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 ">
+
+                    <!-- 1 card -->
+                    <div
+                        class="relative group bg-[#eaeaea] rounded-xl p-4 shadow-sm transition duration-500 transform hover:scale-105 hover:shadow-2xl min-h-[420px] border">
+
+
+
+                        <div
+                            class="w-full h-36 mb-4 bg-white rounded-lg flex justify-center items-center overflow-hidden relative group">
+
+                            <div
+                                class="h-10 w-10 bg-[#eaeaea] absolute top-1 right-1 rounded-full z-10  justify-center items-center hidden group-hover:flex transition duration-500 cursor-pointer">
+                                <img src="resources/header_icon/icons8-heart-25.png" alt="heart" />
+                            </div>
+
+
+                            <img src="resources/products/1.png" alt="Wireless Earbuds" class="h-full object-contain" />
+                        </div>
+
+
+                        <h3 class="text-lg font-semibold text-gray-800 leading-snug mb-1">
+                            Wireless Earbuds Bluetooth Headphones, Ear Buds
+                        </h3>
+
+
+                        <div class="flex items-center text-[#ffb929] text-lg mt-3 mb-1">
+
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current text-[#ffb929]" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2" />
+                            <path d="M12 2v15.27L5.82 21 7.46 13.97 2 9.24l7.19-.61L12 2z"
+                                  class="text-gray-300 fill-current" />
+                            </svg>
+                            <span class="text-gray-500 text-sm ml-2">(4700)</span>
+                        </div>
+
+
+                        <p class="text-[#B43F3F] font-bold text-lg mt-2">$19.99</p>
+
+                        <p class="text-sm text-gray-600 mt-2"><span class="text-green-600">In Stock</span> 20 Items</p>
+
+
+                        <p class="text-sm text-gray-600 mt-1">Shipping Fee: $1.00</p>
+
+                        <a href="#"
+                           class="flex items-center justify-center rounded-md mt-3 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Add to cart</a>
+                    </div>
+
+                    <!-- 2 card -->
+                    <div
+                        class="relative group bg-[#eaeaea] rounded-xl p-4 shadow-sm transition duration-500 transform hover:scale-105 hover:shadow-2xl min-h-[420px] border">
+
+
+                        <div
+                            class="w-full h-36 mb-4 bg-white rounded-lg flex justify-center items-center overflow-hidden relative group">
+
+
+                            <div
+                                class="h-10 w-10 bg-[#eaeaea] absolute top-1 right-1 rounded-full z-10  justify-center items-center hidden group-hover:flex transition duration-500 cursor-pointer">
+                                <img src="resources/header_icon/icons8-heart-25.png" alt="heart" />
+                            </div>
+
+
+                            <img src="resources/products/2.png" alt="Wireless Earbuds" class="h-full object-contain" />
+                        </div>
+
+
+
+                        <h3 class="text-lg font-semibold text-gray-800 leading-snug mb-1">
+                            Ortizan Portable Blutooth Speaker: IPX7 Waterproof, 24W Loud
+                        </h3>
+
+
+                        <div class="flex items-center text-[#ffb929] text-lg mt-3 mb-1">
+
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current text-[#ffb929]" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2" />
+                            <path d="M12 2v15.27L5.82 21 7.46 13.97 2 9.24l7.19-.61L12 2z"
+                                  class="text-gray-300 fill-current" />
+                            </svg>
+                            <span class="text-gray-500 text-sm ml-2">(125)</span>
+                        </div>
+
+
+                        <p class="text-[#B43F3F] font-bold text-lg mt-2">$29.99</p>
+
+
+                        <p class="text-sm text-gray-600 mt-2"><span class="text-green-600">In Stock</span> 20 Items</p>
+
+
+                        <p class="text-sm text-gray-600 mt-1">Shipping Fee: $1.50</p>
+
+                        <a href="#"
+                           class="flex items-center justify-center rounded-md mt-3 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Add to cart</a>
+                    </div>
+
+                    <!-- 3 card -->
+                    <div
+                        class="relative group bg-[#eaeaea] rounded-xl p-4 shadow-sm transition duration-500 transform hover:scale-105 hover:shadow-2xl min-h-[420px] border">
+
+
+
+
+
+                        <div
+                            class="w-full h-36 mb-4 bg-white rounded-lg flex justify-center items-center overflow-hidden relative group">
+
+
+                            <div
+                                class="h-10 w-10 bg-[#eaeaea] absolute top-1 right-1 rounded-full z-10  justify-center items-center hidden group-hover:flex transition duration-500 cursor-pointer">
+                                <img src="resources/header_icon/icons8-heart-25.png" alt="heart" />
+                            </div>
+
+
+                            <img src="resources/products/3.png" alt="Wireless Earbuds" class="h-full object-contain" />
+                        </div>
+
+
+
+                        <h3 class="text-lg font-semibold text-gray-800 leading-snug mb-1">
+                            Apple iPhone 8 Plus 64GB Space Gray LTE Cellular MX9X2LL/A
+                        </h3>
+
+
+                        <div class="flex items-center text-[#ffb929] text-lg mt-3 mb-1">
+
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current text-[#ffb929]" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2" />
+                            <path d="M12 2v15.27L5.82 21 7.46 13.97 2 9.24l7.19-.61L12 2z"
+                                  class="text-gray-300 fill-current" />
+                            </svg>
+                            <span class="text-gray-500 text-sm ml-2">(12)</span>
+                        </div>
+
+
+                        <p class="text-[#B43F3F] font-bold text-lg mt-2">$179.99</p>
+
+
+                        <p class="text-sm text-gray-600 mt-2"><span class="text-green-600">In Stock</span> 20 Items</p>
+
+                        <p class="text-sm text-gray-600 mt-1">Shipping Fee: Free Shipping</p>
+
+                        <a href="#"
+                           class="flex items-center justify-center rounded-md mt-3 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Add to cart</a>
+                    </div>
+
+                    <!-- 4 card -->
+                    <div
+                        class="relative group bg-[#eaeaea] rounded-xl p-4 shadow-sm transition duration-500 transform hover:scale-105 hover:shadow-2xl min-h-[420px] border">
+
+
+
+                        <div
+                            class="w-full h-36 mb-4 bg-white rounded-lg flex justify-center items-center overflow-hidden relative group">
+
+
+                            <div
+                                class="h-10 w-10 bg-[#eaeaea] absolute top-1 right-1 rounded-full z-10  justify-center items-center hidden group-hover:flex transition duration-500 cursor-pointer">
+                                <img src="resources/header_icon/icons8-heart-25.png" alt="heart" />
+                            </div>
+
+                            <img src="resources/products/4.png" alt="Wireless Earbuds" class="h-full object-contain" />
+                        </div>
+
+
+
+                        <h3 class="text-lg font-semibold text-gray-800 leading-snug mb-1">
+                            SAMSUNG Galaxy Tab S10+ Book Cover Keyboard Slim Ai Key
+                        </h3>
+
+
+                        <div class="flex items-center text-[#ffb929] text-lg mt-3 mb-1">
+
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current text-[#ffb929]" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2" />
+                            <path d="M12 2v15.27L5.82 21 7.46 13.97 2 9.24l7.19-.61L12 2z"
+                                  class="text-gray-300 fill-current" />
+                            </svg>
+                            <span class="text-gray-500 text-sm ml-2">(20)</span>
+                        </div>
+
+
+                        <p class="text-[#B43F3F] font-bold text-lg mt-2">$100.00</p>
+
+
+                        <p class="text-sm text-gray-600 mt-2"><span class="text-green-600">In Stock</span> 20 Items</p>
+
+
+                        <p class="text-sm text-gray-600 mt-1">Shipping Fee: $3.50</p>
+
+                        <a href="#"
+                           class="flex items-center justify-center rounded-md mt-3 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Add to cart</a>
+                    </div>
+
+                    <!-- 5 card -->
+                    <div
+                        class="relative group bg-[#eaeaea] rounded-xl p-4 shadow-sm transition duration-500 transform hover:scale-105 hover:shadow-2xl min-h-[420px] border">
+
+
+
+
+
+                        <div
+                            class="w-full h-36 mb-4 bg-white rounded-lg flex justify-center items-center overflow-hidden relative group">
+
+
+                            <div
+                                class="h-10 w-10 bg-[#eaeaea] absolute top-1 right-1 rounded-full z-10  justify-center items-center hidden group-hover:flex transition duration-500 cursor-pointer">
+                                <img src="resources/header_icon/icons8-heart-25.png" alt="heart" />
+                            </div>
+
+
+                            <img src="resources/products/5.png" alt="Wireless Earbuds" class="h-full object-contain" />
+                        </div>
+
+
+
+                        <h3 class="text-lg font-semibold text-gray-800 leading-snug mb-1">
+                            Smart Watch For Men Women Answer/Make Calls,1.96" HD Fitness
+                        </h3>
+
+
+                        <div class="flex items-center text-[#ffb929] text-lg mt-3 mb-1">
+
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                            <path
+                                d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current text-[#ffb929]" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2" />
+                            <path d="M12 2v15.27L5.82 21 7.46 13.97 2 9.24l7.19-.61L12 2z"
+                                  class="text-gray-300 fill-current" />
+                            </svg>
+                            <span class="text-gray-500 text-sm ml-2">(5000)</span>
+                        </div>
+
+
+                        <p class="text-[#B43F3F] font-bold text-lg mt-2">$129.99</p>
+
+
+                        <p class="text-sm text-gray-600 mt-2"><span class="text-green-600">In Stock</span> 20 Items</p>
+
+
+                        <p class="text-sm text-gray-600 mt-1">Shipping Fee: Free Shipping</p>
+
+                        <a href="#"
+                           class="flex items-center justify-center rounded-md mt-3 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Add to cart</a>
+                    </div>
+                </div>
+
+
+            </section>
+            <!-- Third -->
+        </div>
+
+        <!-- footer -->
+        <div id="footer-call"></div>
+        <!-- footer -->
+
+        <script src="js/single-product-view.js"></script>
+        <script src="js/sign-out.js"></script>
+        <script>
+                            function changeImage(divElement) {
+                                const img = divElement.querySelector('img');
+                                document.getElementById('mainImage').src = img.src;
+                            }
+        </script>
+        <script src="js/header.js"></script>
+    </body>
+
+</html>

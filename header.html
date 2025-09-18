@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/output.css">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body onload="sideCart();">
+
+        <div class="h-6 w-full bg-black grid grid-cols-12 ">
+            <div class="flex items-center justify-start h-full p-2 col-span-12">
+                <span class="text-white text-[10px] ms-10">Hi Chanuka Rukshan | Signout | Help & Contact</span>
+            </div>
+        </div>
+
+
+        <!-- Large device Header -->
+        <nav class="bg-[#eaeaea] shadow-lg hidden lg:block md:hidden ">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="#" class="flex items-center">
+                            <img src="resources/Logo.svg" class="h-16 w-auto" alt="" />
+                        </a>
+                        <div class="hidden md:ml-8 md:flex lg:space-x-8 ">
+                            <a href="index.html"
+                               class="text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] px-1 pt-1 inline-flex items-center text-sm font-medium">
+                                Home
+                            </a>
+                            <a href="#"
+                               class="text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] px-1 pt-1 inline-flex items-center text-sm font-medium">
+                                New Products
+                            </a>
+                            <a href="#"
+                               class="text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] px-1 pt-1 inline-flex items-center text-sm font-medium">
+                                Used Products
+                            </a>
+                            <a href="#"
+                               class="text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] px-1 pt-1 inline-flex items-center text-sm font-medium">
+                                Category
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <!-- Search -->
+                        <div class="hidden md:flex md:ml-4">
+                            <div class="relative">
+                                <input type="text"
+                                       class="bg-white text-black rounded-md pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#B43F3F] w-64"
+                                       placeholder="What are you looking for?" />
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                          clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-3 relative hidden md:block px-3">
+                            <button id="open-watchbar"
+                                    class="py-4 px-1  border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none cursor-pointer focus:text-gray-500 transition duration-150 ease-in-out"
+                                    aria-label="Cart">
+                                <img src="resources/header_icon/icons8-heart-25.png" class="h-7 w-7 " alt="" />
+                                <span class="absolute inset-0 object-right-top -mr-6">
+                                    <div
+                                        class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-[#B43F3F] text-white" id="watchlistIcone">
+                                        
+                                    </div>
+                                </span>
+                            </button>
+                        </div>
+                        <div class=" relative hidden md:block ">
+                            <button id="open-cartbar" onclick="sideCart();"
+                                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none cursor-pointer focus:text-gray-500 transition duration-150 ease-in-out"
+                                    aria-label="Cart">
+                                <img src="resources/header_icon/icons8-cart-25.png" class="h-7 w-7" alt="" />
+                                <span class="absolute inset-0 object-right-top -mr-6">
+                                    <span
+                                        class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-[#B43F3F] text-white" id="cartIcone">
+
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Profile dropdown -->
+                        <div class="ml-5 relative hidden md:block px-5">
+                            <div>
+                                <button type="button"
+                                        class="bg-[#eaeaea] flex text-sm rounded-full focus:outline-none cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#B43F3F] focus:ring-[#ffb929] border-2 border-[#B43F3F]"
+                                        id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                    <img class="h-10 w-10 rounded-full " src="resources/myImg.jpg" alt="" />
+                                </button>
+                            </div>
+
+                            <!-- Dropdown menu, show/hide based on menu state -->
+                            <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden z-50"
+                                 id="user-menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
+                                 tabindex="-1">
+                                <a href="my-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                   role="menuitem" tabindex="-1">My Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Orders</a>
+                                <a href="add-product.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                   role="menuitem" tabindex="-1">Add Product</a>
+                                <a href="purchase-history.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Purchase History</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Settings & Privacy</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Help & Support</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1" onclick="signOut();">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Large device Header -->
+
+        <!-- md device -->
+        <nav class="bg-[#eaeaea] shadow-lg hidden lg:hidden md:block ">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+
+                        <a href="#" class="flex items-center">
+                            <img src="resources/Logo.svg" class="h-14 w-auto" alt="" />
+                        </a>
+
+                    </div>
+
+                    <div class="flex items-center">
+                        <!-- Search -->
+                        <div class="hidden md:flex md:ml-4">
+                            <div class="relative">
+                                <input type="text"
+                                       class="bg-white text-black rounded-md pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#B43F3F] w-64"
+                                       placeholder="What are you looking for?" />
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                          clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-3 relative hidden md:block px-3">
+                            <button id="open-watchbarMd"
+                                    class="py-4 px-1  border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none cursor-pointer focus:text-gray-500 transition duration-150 ease-in-out"
+                                    aria-label="Cart">
+                                <img src="resources/header_icon/icons8-heart-25.png" class="h-7 w-7 " alt="" />
+                                <span class="absolute inset-0 object-right-top -mr-6">
+                                    <div
+                                        class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-[#B43F3F] text-white" id="watchlistIconeMd">
+                                        
+                                    </div>
+                                </span>
+                            </button>
+                        </div>
+                        <div class=" relative hidden md:block ">
+                            <button id="open-cartbarMd"
+                                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none cursor-pointer focus:text-gray-500 transition duration-150 ease-in-out"
+                                    aria-label="Cart">
+                                <img src="resources/header_icon/icons8-cart-25.png" class="h-7 w-7" alt="" />
+                                <span class="absolute inset-0 object-right-top -mr-6">
+                                    <span
+                                        class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-[#B43F3F] text-white" id="cartIconeMd">
+
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Profile dropdown -->
+                        <div class="ml-5 relative hidden md:block px-5">
+                            <div>
+                                <button type="button"
+                                        class="bg-[#eaeaea] flex text-sm rounded-full focus:outline-none cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#B43F3F] focus:ring-[#ffb929] border-2 border-[#B43F3F]"
+                                        id="user-menu-button-md" aria-expanded="false" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                    <img class="h-10 w-10 rounded-full " src="resources/myImg.jpg" alt="" />
+                                </button>
+                            </div>
+
+                            <!-- Dropdown menu -->
+                            <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden z-50"
+                                 id="user-menu-md" role="menu" aria-orientation="vertical"
+                                 aria-labelledby="user-menu-button-md" tabindex="-1">
+                                <a href="my-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                   role="menuitem" tabindex="-1">My Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Orders</a>
+                                <a href="add-product.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                   role="menuitem" tabindex="-1">Add Product</a>
+                                <a href="purchase-history.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Purchase History</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Settings & Privacy</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1">Help & Support</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                   tabindex="-1" onclick="signOut();">Sign Out</a>
+                            </div>
+                        </div>
+
+                        <!-- md menu icon -->
+                        <div class="relative hidden md:block">
+                            <button id="open-sidebar-md"
+                                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none cursor-pointer focus:text-gray-500 transition duration-150 ease-in-out"
+                                    aria-label="Menu">
+                                <img src="resources/header_icon/icons8-menu-30.png" class="h-7 w-7" alt="" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- md device -->
+
+        <!-- mobile device -->
+        <nav class="bg-[#eaeaea] shadow-lg block lg:hidden md:hidden ">
+            <div class=" flex overflow-hidden ">
+                <!-- Content -->
+                <div class="flex-1 flex flex-col overflow-hidden">
+                    <!-- Navbar -->
+                    <div class=" shadow">
+                        <div class="container mx-auto">
+                            <div class="flex justify-between items-center py-4 px-8">
+                                <img src="resources/Logo.svg" class="h-14 w-auto" alt="" />
+
+                                <button class="text-gray-500 hover:text-gray-600 cursor-pointer" id="open-sidebar">
+                                    <img src="resources/header_icon/icons8-menu-30.png" alt="" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Body -->
+                </div>
+            </div>
+        </nav>
+        <!-- mobile -->
+
+        <!-- Sidebar for md + mobile devices -->
+        <div id="sidebar"
+             class="fixed top-0 lg:hidden left-0 bg-white text-black w-64 h-full overflow-y-auto transform -translate-x-full transition-transform duration-300 shadow-xl ease-in-out z-50">
+            <div class="p-4">
+                <a href="#" class="flex items-center justify-center">
+                    <img src="resources/Logo.svg" class="h-16 w-auto" alt="" />
+                </a>
+                <h1 class="text-2xl font-semibold flex justify-center items-center mt-2">THE WEBSTORE</h1>
+                <ul class="mt-10">
+                    <li class="mb-3">
+                        <a href="index.html"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929]">&nbsp;
+                            <img src="resources/header_icon/icons8-home-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929]">&nbsp;
+                            <img src="resources/header_icon/icons8-new-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>New Products</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929]">&nbsp;
+                            <img src="resources/header_icon/icons8-used-product-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Used Products</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929]">&nbsp;
+                            <img src="resources/header_icon/icons8-category-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Category</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="cart.html" 
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-cart-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Cart</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="watchlist.html"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-heart-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Watchlist</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="my-profile.html"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-profile-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-logistics-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="add-product.html"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-add-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Add Products</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="purchase-history.html"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-history-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Purchase History</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-settings-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Setting & Privacy</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-support-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Help & Supports</span>
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#" onclick="signOut();"
+                           class="flex items-center gap-2 text-gray-400 hover:text-black border-b-2 border-transparent hover:border-[#ffb929] md:hidden">&nbsp;
+                            <img src="resources/header_icon/icons8-log-out-20.png" alt="Home Icon" class="w-5 h-5" />
+                            <span>Sign Out</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0  bg-opacity-50 hidden z-40"></div>
+        <!-- Overlay -->
+
+        <!-- cartbar -->
+        <div id="cartbar" 
+             class="fixed top-0 right-0 bg-white text-black w-[500px] h-full overflow-y-auto transform translate-x-full transition-transform duration-300 shadow-xl ease-in-out z-50 opacity-0">
+            <div class="bg-white flex flex-col h-full p-10 w-full">
+                <!-- Header -->
+                <div class="flex items-center mb-3 justify-between">
+                    <h2 class="text-[#191919] text-xl font-medium leading-[30px]" id="headCart">Shopping Cart (2)</h2>
+                    <img src="resources/header_icon/icons8-close-30.png" id="close-cartbar" class="cursor-pointer h-5 w-5"
+                         alt="">
+                </div>
+
+                <!-- Item 1 -->
+                <div id="cartsideDesign">
+                    <div class="flex gap-2 mb-6 items-center">
+                        <img width="120" height="100" class="border border-[#ffb929] rounded-lg" src="resources/products/1.png"
+                             alt="">
+                        <div>
+                            <h3 class="w-[216px] text-[#191919] text-sm font-normal leading-[21px]">
+                            </h3>
+                            <p class="mt-2">
+
+                                <span class="text-[#B43F3F] text-sm font-semibold leading-[16.80px]" ></span>
+                            </p>
+                        </div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_629_6652)">
+                        <path
+                            d="M12 23C18.0748 23 23 18.0748 23 12C23 5.92525 18.0748 1 12 1C5.92525 1 1 5.92525 1 12C1 18.0748 5.92525 23 12 23Z"
+                            stroke="#CCCCCC" stroke-miterlimit="10" />
+                        <path d="M16 8L8 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path d="M16 16L8 8" stroke="#666666" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_629_6652">
+                            <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="mt-auto">
+                    <div class="py-6 bg-white flex justify-between items-center">
+                        <span class="text-[#191919] text-base font-normal" id="total-qty"></span>
+                        <span class="text-[#191919] text-base font-semibold" id="order-totalSide"></span>
+                    </div>
+                    <button
+                        class="w-full px-10 py-4 bg-[#B43F3F] rounded-[43px] text-white text-base font-semibold leading-tight cursor-pointer">Checkout</button>
+                    <button
+                        class="w-full mt-3 px-10 py-4 bg-[#56ac59]/10 rounded-[43px] text-[#B43F3F] text-base font-semibold leading-tight cursor-pointer"
+                        onclick="window.location.href = 'cart.html'">Go
+                        To Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- cartbar -->
+
+        <!-- Watchlist -->
+        <div id="watchbar"
+             class="fixed top-0 right-0 bg-white text-black w-[500px] h-full overflow-y-auto transform translate-x-full transition-transform duration-300 shadow-xl ease-in-out z-50 opacity-0">
+            <div class="bg-white flex flex-col h-full p-10 w-full">
+                <!-- Header -->
+                <div class="flex items-center mb-3 justify-between">
+                    <h2 class="text-[#191919] text-xl font-medium leading-[30px]" id="headWatchlist">Watchlist (2)</h2>
+                    <img src="resources/header_icon/icons8-close-30.png" id="close-watchbar" class="cursor-pointer h-5 w-5"
+                         alt="">
+                </div>
+
+                <!-- Item 1 -->
+                <div id="watchlistBarSide">
+                    <div class="flex gap-2 mb-6 items-center">
+                        <img width="120" height="100" class="border border-[#ffb929] rounded-lg" src="resources/products/1.png"
+                             alt="">
+                        <div>
+                            <h3 class="w-[216px] text-[#191919] text-sm font-normal leading-[21px]">Wireless Earbuds Bluetooth
+                                Headphones, Ear Buds with Deep Bass</h3>
+                            <p class="mt-2">
+
+                                <span class="text-[#B43F3F] text-sm font-semibold leading-[16.80px]">$19.99</span>
+                            </p>
+                        </div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_629_6652)">
+                        <path
+                            d="M12 23C18.0748 23 23 18.0748 23 12C23 5.92525 18.0748 1 12 1C5.92525 1 1 5.92525 1 12C1 18.0748 5.92525 23 12 23Z"
+                            stroke="#CCCCCC" stroke-miterlimit="10" />
+                        <path d="M16 8L8 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path d="M16 16L8 8" stroke="#666666" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_629_6652">
+                            <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Footer -->
+                <div class="mt-auto">
+
+                    <button onclick="window.location.href = 'watchlist.html'"
+                            class="w-full px-10 py-4 bg-[#B43F3F] rounded-[43px] text-white text-base font-semibold leading-tight cursor-pointer">View
+                        Watchlist</button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Watchlist -->
+
+
+
+        <script src="js/sign-out.js"></script>
+        <script>
+                        const watchbar = document.getElementById('watchbar');
+                        const watchbarOpenButton = document.getElementById('open-watchbar');
+                        const watchbarMd = document.getElementById('open-watchbarMd');
+                        const watchbarCloseButton = document.getElementById('close-watchbar');
+
+                        watchbarOpenButton.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            watchbar.classList.remove('translate-x-full', 'opacity-0');
+                            watchbar.classList.add('translate-x-0', 'opacity-100');
+                        });
+
+                        watchbarMd.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            watchbar.classList.remove('translate-x-full', 'opacity-0');
+                            watchbar.classList.add('translate-x-0', 'opacity-100');
+                        });
+
+                        watchbarCloseButton.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            watchbar.classList.add('translate-x-full', 'opacity-0');
+                            watchbar.classList.remove('translate-x-0', 'opacity-100');
+                        });
+
+                        document.addEventListener('click', (e) => {
+                            if (!watchbar.contains(e.target) && !watchbarOpenButton.contains(e.target)) {
+                                watchbar.classList.add('translate-x-full', 'opacity-0');
+                                watchbar.classList.remove('translate-x-0', 'opacity-100');
+                            }
+                        });
+                        document.addEventListener('click', (e) => {
+                            if (!watchbar.contains(e.target) && !watchbarMd.contains(e.target)) {
+                                watchbar.classList.add('translate-x-full', 'opacity-0');
+                                watchbar.classList.remove('translate-x-0', 'opacity-100');
+                            }
+                        });
+        </script>
+        <script>
+            const cartbar = document.getElementById('cartbar');
+            const opencartbarButton = document.getElementById('open-cartbar');
+            const opencartbarMd = document.getElementById('open-cartbarMd');
+            const closecartbarButton = document.getElementById('close-cartbar');
+
+            opencartbarButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartbar.classList.remove('translate-x-full', 'opacity-0');
+                cartbar.classList.add('translate-x-0', 'opacity-100');
+            });
+
+            opencartbarMd.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartbar.classList.remove('translate-x-full', 'opacity-0');
+                cartbar.classList.add('translate-x-0', 'opacity-100');
+            });
+
+            closecartbarButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartbar.classList.add('translate-x-full', 'opacity-0');
+                cartbar.classList.remove('translate-x-0', 'opacity-100');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!cartbar.contains(e.target) && !opencartbarButton.contains(e.target)) {
+                    cartbar.classList.add('translate-x-full', 'opacity-0');
+                    cartbar.classList.remove('translate-x-0', 'opacity-100');
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!cartbar.contains(e.target) && !opencartbarMd.contains(e.target)) {
+                    cartbar.classList.add('translate-x-full', 'opacity-0');
+                    cartbar.classList.remove('translate-x-0', 'opacity-100');
+                }
+            });
+        </script>
+        <script>
+            // Profile dropdown toggle helper
+            function setupDropdown(buttonId, menuId) {
+                const button = document.getElementById(buttonId);
+                const menu = document.getElementById(menuId);
+
+                if (button && menu) {
+                    button.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        const isExpanded = this.getAttribute("aria-expanded") === "true";
+                        this.setAttribute("aria-expanded", !isExpanded);
+                        menu.classList.toggle("hidden");
+                    });
+
+                    document.addEventListener("click", function (e) {
+                        if (!menu.contains(e.target) && !button.contains(e.target)) {
+                            menu.classList.add("hidden");
+                            button.setAttribute("aria-expanded", "false");
+                        }
+                    });
+                }
+            }
+
+            // Setup profile dropdowns
+            setupDropdown("user-menu-button", "user-menu");
+            setupDropdown("user-menu-button-md", "user-menu-md");
+
+            // Sidebar and overlay elements
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("sidebar-overlay");
+            const openSidebarButtonMobile = document.getElementById("open-sidebar");
+            const openSidebarButtonMd = document.getElementById("open-sidebar-md");
+
+            // Open sidebar function
+            function openSidebar() {
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.remove("hidden");
+            }
+
+            // Close sidebar function
+            function closeSidebar() {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+            }
+
+            // Event listeners for menu buttons
+            openSidebarButtonMobile?.addEventListener("click", (e) => {
+                e.stopPropagation();
+                openSidebar();
+            });
+
+            openSidebarButtonMd?.addEventListener("click", (e) => {
+                e.stopPropagation();
+                openSidebar();
+            });
+
+            // Clicking on overlay closes sidebar
+            overlay.addEventListener("click", () => {
+                closeSidebar();
+            });
+
+            // Clicking outside sidebar closes sidebar
+            document.addEventListener("click", (e) => {
+                if (
+                        !sidebar.contains(e.target) &&
+                        !openSidebarButtonMobile?.contains(e.target) &&
+                        !openSidebarButtonMd?.contains(e.target)
+                        ) {
+                    closeSidebar();
+                }
+            });
+        </script>
+        <script src="js/header.js"></script>
+    </body>
+
+</html>

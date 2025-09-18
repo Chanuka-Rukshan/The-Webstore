@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Webstore User Profile</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/output.css">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="resources/Logo.svg" type="image/x-icon">
+
+    </head>
+
+    <body class="bg-[#eaeaea]" onload="loadData(); loadShippingAddress();">
+
+        <!-- Header -->
+        <div id="header-placeholder"></div>
+        <!-- Header-->
+
+
+
+
+
+        <!-- design -->
+
+        <div class="container  mx-auto py-8 ">
+            <div class="grid grid-cols-4 md:grid-cols-12 gap-6 px-4">
+                <div class="col-span-4 md:col-span-4">
+                    <div class="bg-white shadow rounded-lg p-6 ">
+                        <div class="flex flex-col items-center">
+                            <img src="resources/myImg.jpg" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
+
+                            </img>
+                            <h1 class="lg:text-xl md:text-lg font-bold">Chanuka Rukshan</h1>
+                            <p class="text-gray-700 md:text-sm lg:text-lg">chanukarukshan81@gmail.com</p>
+                            <div class="mt-6 flex flex-wrap gap-4 justify-center">
+                                <a href="#"
+                                   class="bg-[#B43F3F] hover:bg-red-900 text-white py-1 px-10 rounded md:text-sm lg:text-lg">Update
+                                    Profile</a>
+
+                            </div>
+                        </div>
+                        <hr class="my-6 border-t border-gray-300">
+
+
+                        <div class="h-12 w-full bg-[#eaeaea] hover:bg-[#B43F3F]/20  text-center flex justify-center items-center rounded-xl cursor-pointer mb-3"
+                             onclick="showSection('profileDetails')">
+                            <img src="resources/icons8-user-menu-male-26.png" alt="">&nbsp;&nbsp;&nbsp;
+                            <span class="text-gray-500 flex lg:text-lg md:text-sm font-bold">My Details</span>
+                        </div>
+                        <div class="h-12 w-full bg-[#eaeaea] hover:bg-[#B43F3F]/20 text-center flex justify-center items-center rounded-xl cursor-pointer mb-3"
+                             onclick="showSection('shippingAddress')">
+                            <img src="resources/icons8-in-transit-26.png" alt="">&nbsp;&nbsp;&nbsp;
+                            <span class="text-gray-500 lg:text-lg font-bold md:text-sm">Shipping Address</span>
+                        </div>
+                        <div class="h-12 w-full bg-[#eaeaea] hover:bg-[#B43F3F]/20 text-center flex justify-center items-center rounded-xl cursor-pointer mb-3"
+                             onclick="showSection('changePassword')">
+                            <img src="resources/icons8-key-26 (1).png" alt="">&nbsp;&nbsp;&nbsp;
+                            <span class="text-gray-500 lg:text-lg font-bold md:text-sm">Change Password</span>
+                        </div>
+                        <div onclick="signOut();"
+                            class="h-12 w-full bg-[#eaeaea] hover:bg-[#B43F3F]/20 text-center flex justify-center items-center rounded-xl cursor-pointer">
+                            <img src="resources/icons8-logout-26.png" alt="">&nbsp;&nbsp;&nbsp;
+                            <span class="text-gray-500 lg:text-lg font-bold md:text-sm">Sign Out</span>
+                        </div>
+
+                        <hr class="my-6 border-t border-gray-300">
+
+                    </div>
+                </div>
+
+                <!-- Edit Your Profile Details -->
+                <div id="profileDetails" class="col-span-4 md:col-span-8 ">
+                    <div class="bg-white shadow rounded-lg p-6">
+
+                        <div class="flex  justify-center">
+                            <img src="resources/icons8-profile-94.png" class="" alt="">
+                        </div>
+
+                        <h2 class="text-3xl font-bold text-center mb-1">Edit Your Pofile Details</h2>
+
+
+                        <div class="space-y-4 mt-16">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="text-lg">First Name :</label>
+                                    <input type="text" id="fname"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="First Name Here">
+
+
+                                </div>
+                                <div>
+                                    <label class="text-lg">Last Name :</label>
+                                    <input type="text" id="lname"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="Last Name Here">
+
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                                <div>
+                                    <label class="text-lg">Email :</label>
+                                    <input type="text" id="email"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="Email Here" disabled>
+
+
+                                </div>
+                                <div>
+                                    <label class="text-lg">Mobile :</label>
+                                    <input type="text" id="mobile"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="Mobile Number Here">
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                                <div>
+                                    <label class="text-lg">Gender :</label>
+                                    <select type="text" id="genderSelect"
+                                            class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                            placeholder="Password Here">
+                                        <option value="0">Select You Gender</option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div onclick="updateDetails();"
+                                 class="h-10 w-full bg-[#B43F3F] rounded-lg flex justify-center items-center cursor-pointer mt-10">
+                                <span class="text-white text-xl">Update Details</span>
+                            </div>
+
+                            <hr class="my-6 border-t border-gray-300">
+
+                            <!-- add address -->
+
+                            <div class="flex  justify-center">
+                                <img src="resources/icons8-map-94.png" class="" alt="">
+                            </div>
+
+                            <h2 class="text-3xl font-bold text-center mb-1">Add Your Address</h2>
+
+                            <div class="space-y-4 mt-5">
+                                <div class="mt-5">
+                                    <label class="text-lg">Address :</label>
+                                    <input type="text" id="address"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="Address Here">
+
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                                    <div>
+                                        <label class="text-lg">Postal Code :</label>
+                                        <input type="text" id="postalCode"
+                                               class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                               placeholder="Postal Code Here">
+
+
+                                    </div>
+                                    <div>
+                                        <label class="text-lg">Country :</label>
+                                        <select type="text" id="selectCountry" onchange="loadCity();"
+                                                class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                                placeholder="Mobile Number Here">
+                                            <option value="0">Select Your Country</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                                    <div>
+                                        <label class="text-lg">City :</label>
+                                        <select type="text" id="selectCity"
+                                                class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                                placeholder="Password Here">
+                                            <option value="0">Select You City</option>                  
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                                <div
+                                    class="h-10 w-full bg-[#B43F3F] rounded-lg flex justify-center items-center cursor-pointer mt-10" onclick="saveAddress();">
+                                    <span class="text-white text-xl">Add Address</span>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+                <!-- My Shipping Address -->
+                <div id="shippingAddress" class="col-span-4 md:col-span-8 hidden">
+                    <div class="bg-white shadow rounded-lg p-6 ">
+
+                        <div class="flex  justify-center">
+                            <img src="resources/icons8-map-94.png" class="" alt="">
+                        </div>
+
+                        <h2 class="text-3xl font-bold text-center mb-1">My Shipping Address</h2>
+
+                        <hr class="my-6 border-t border-gray-300">
+                        <div id="addressPanel">
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- Change Password -->
+                <div id="changePassword" class="col-span-4 md:col-span-8 hidden">
+                    <div class="bg-white shadow rounded-lg p-6 h-screen">
+
+                        <div class="flex  justify-center">
+                            <img src="resources/icons8-key-94.png" class="" alt="">
+                        </div>
+
+                        <h2 class="text-3xl font-bold text-center mb-1">Change My Password</h2>
+
+
+
+                        <div class="space-y-4 mt-16">
+                            <div class="mt-5">
+                                <label class="text-lg">Currant Password :</label>
+                                <input type="password"
+                                       class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                       placeholder="***********" disabled>
+
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="text-lg">New Password :</label>
+                                    <input type="password" id="newPassword"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="New Password Here">
+
+
+                                </div>
+                                <div>
+                                    <label class="text-lg">Conform Password :</label>
+                                    <input type="password" id="conformPassword"
+                                           class="bg-[#eaeaea] w-full h-10 mt-1 rounded-lg  text-xs ring-1 px-2 ring-[#ffb929] focus:ring-[#B43F3F] focus:outline-none focus:border-[#ffb929] text-black"
+                                           placeholder="Conform Password Here">
+
+                                </div>
+                            </div>
+
+                            <div class="h-10 w-full bg-[#B43F3F] rounded-lg flex justify-center items-center cursor-pointer lg:mt-16 "
+                                 onclick="changePassword();">
+                                <span class="text-white text-xl">Change Password</span>
+                            </div>
+                        </div>
+
+
+                        <hr class="my-6 border-t border-gray-300">
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- OTP Modal -->
+        <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-transparent bg-opacity-60 px-4">
+            <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8">
+                <div
+                    class="bg-white shadow-2xl rounded-3xl w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <div class="flex justify-end p-2">
+                        <button onclick="closeModal('modelConfirm')" type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center cursor-pointer">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="p-6 sm:p-8 text-center">
+                        <div class="flex items-center justify-center mb-4">
+                            <img src="resources/Logo.svg" class="w-32 sm:w-36 md:w-[150px]" alt="Logo">
+                        </div>
+
+                        <h2 class="text-2xl font-bold mb-2 text-gray-800">Verify OTP</h2>
+                        <p class="text-sm text-gray-600 mb-6">Enter the 6-digit code sent to your email
+                        </p>
+
+                        <div class="flex justify-center flex-wrap gap-3 mb-6" id="otp-container">
+                            <!-- 6 OTP Input Fields -->
+                            <input type="text" maxlength="1" id="otp_1"
+                                   class="w-12 h-14 text-center text-2xl border-2 border-[#ffb929] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ffb929] text-black transition-transform duration-300 hover:scale-110" />
+                            <input type="text" maxlength="1" id="otp_2"
+                                   class="w-12 h-14 text-center text-2xl border-2 border-[#ffb929] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ffb929] text-black transition-transform duration-300 hover:scale-110" />
+                            <input type="text" maxlength="1" id="otp_3"
+                                   class="w-12 h-14 text-center text-2xl border-2 border-[#ffb929] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ffb929] text-black transition-transform duration-300 hover:scale-110" />
+                            <input type="text" maxlength="1" id="otp_4"
+                                   class="w-12 h-14 text-center text-2xl border-2 border-[#ffb929] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ffb929] text-black transition-transform duration-300 hover:scale-110" />
+                            <input type="text" maxlength="1" id="otp_5"
+                                   class="w-12 h-14 text-center text-2xl border-2 border-[#ffb929] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ffb929] text-black transition-transform duration-300 hover:scale-110" />
+                            <input type="text" maxlength="1" id="otp_6"
+                                   class="w-12 h-14 text-center text-2xl border-2 border-[#ffb929] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ffb929] text-black transition-transform duration-300 hover:scale-110" />
+                        </div>
+
+                        <div class="text-sm text-gray-600 mb-6">
+                            Didn't receive code?
+                            <a href="#"
+                               class="text-blue-500 hover:underline transition-colors duration-300 hover:text-[#ffb929]">Resend
+                                OTP</a>
+                        </div>
+
+                        <a href="#">
+                            <button onclick="verifyOtp();"
+                                class="w-full py-3 sm:py-4 bg-[#B43F3F] text-white rounded-xl hover:bg-[#B43F3F] transition-transform duration-300 cursor-pointer hover:scale-105 text-lg">
+                                Verify OTP
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- OTP Model -->
+
+
+
+
+        <!-- footer -->
+        <div id="footer-call"></div>
+        <!-- footer -->
+
+
+
+
+        <script src="js/my-profile.js"></script>
+        <script src="js/profileDetails.js"></script>
+        <script src="js/changePassword.js"></script>
+        <script src="js/sign-out.js"></script>
+<script src="js/header.js"></script>
+    </body>
+
+</html>

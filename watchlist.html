@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist  Page</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+     <link rel="shortcut icon" href="resources/Logo.svg" type="image/x-icon">
+
+</head>
+
+<body class="bg-gray-100 " onload="loadWatchlistItems();">
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    <!-- Header-->
+
+    <div class="container mx-auto p-4 max-w-6xl">
+        <!-- Header with cart count -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">Watchlist </h1>
+            <div class="bg-[#B43F3F] text-white px-3 py-1 rounded-full flex items-center">
+                
+                <span id="totalWatchlist"></span> <span class="hidden sm:inline ml-1">items</span>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <!-- Empty Cart Message -->
+            <div class="bg-white rounded-lg shadow-md p-6 text-center hidden">
+                <i class="fas fa-shopping-cart text-gray-300 text-5xl mb-4"></i>
+                <p class="text-xl text-gray-500">Your cart is empty</p>
+                <a href="#"
+                    class="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                    Continue Shopping
+                </a>
+            </div>
+
+
+
+            <!-- Tablet/Desktop View (≥ sm breakpoint) -->
+            <div class="block">
+                <div class="responsive-table">
+                    <div class="bg-white p-4 w-full rounded-xl">
+                        <table class="w-full bg-white rounded-xl">
+                            <thead>
+                                <tr
+                                    class="text-center border-b border-gray-400 w-full text-[#7f7f7f] text-sm font-medium uppercase leading-[14px] tracking-wide">
+                                    <th class="text-left px-2 py-2">Product</th>
+                                   
+                                    <th class="w-7 px-2 py-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="watchlist_item_container">
+                                
+                              
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+           
+
+
+        </div>
+    </div>
+
+
+
+    <!-- footer -->
+    <div id="footer-call"></div>
+    <!-- footer -->
+
+
+    <script>
+        // Load header
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+
+                // After loading header, manually call JS logic
+                initHeaderScripts(); // Custom function we'll define
+            });
+
+        // Define all your header.js logic here
+        function initHeaderScripts() {
+            // Profile dropdown toggle helper
+            function setupDropdown(buttonId, menuId) {
+                const button = document.getElementById(buttonId);
+                const menu = document.getElementById(menuId);
+
+                if (button && menu) {
+                    button.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        const isExpanded = this.getAttribute("aria-expanded") === "true";
+                        this.setAttribute("aria-expanded", !isExpanded);
+                        menu.classList.toggle("hidden");
+                    });
+
+                    document.addEventListener("click", function (e) {
+                        if (!menu.contains(e.target) && !button.contains(e.target)) {
+                            menu.classList.add("hidden");
+                            button.setAttribute("aria-expanded", "false");
+                        }
+                    });
+                }
+            }
+
+            setupDropdown("user-menu-button", "user-menu");
+            setupDropdown("user-menu-button-md", "user-menu-md");
+
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("sidebar-overlay");
+            const openSidebarButtonMobile = document.getElementById("open-sidebar");
+            const openSidebarButtonMd = document.getElementById("open-sidebar-md");
+
+            function openSidebar() {
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.remove("hidden");
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+            }
+
+            openSidebarButtonMobile?.addEventListener("click", (e) => {
+                e.stopPropagation();
+                openSidebar();
+            });
+
+            openSidebarButtonMd?.addEventListener("click", (e) => {
+                e.stopPropagation();
+                openSidebar();
+            });
+
+            overlay.addEventListener("click", () => {
+                closeSidebar();
+            });
+
+            document.addEventListener("click", (e) => {
+                if (
+                    !sidebar.contains(e.target) &&
+                    !openSidebarButtonMobile?.contains(e.target) &&
+                    !openSidebarButtonMd?.contains(e.target)
+                ) {
+                    closeSidebar();
+                }
+            });
+
+            const cartbar = document.getElementById('cartbar');
+            const opencartbarButton = document.getElementById('open-cartbar');
+            const opencartbarMd = document.getElementById('open-cartbarMd');
+            const closecartbarButton = document.getElementById('close-cartbar');
+
+            opencartbarButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartbar.classList.remove('translate-x-full', 'opacity-0');
+                cartbar.classList.add('translate-x-0', 'opacity-100');
+            });
+
+            opencartbarMd.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartbar.classList.remove('translate-x-full', 'opacity-0');
+                cartbar.classList.add('translate-x-0', 'opacity-100');
+            });
+
+            closecartbarButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cartbar.classList.add('translate-x-full', 'opacity-0');
+                cartbar.classList.remove('translate-x-0', 'opacity-100');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!cartbar.contains(e.target) && !opencartbarButton.contains(e.target)) {
+                    cartbar.classList.add('translate-x-full', 'opacity-0');
+                    cartbar.classList.remove('translate-x-0', 'opacity-100');
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!cartbar.contains(e.target) && !opencartbarMd.contains(e.target)) {
+                    cartbar.classList.add('translate-x-full', 'opacity-0');
+                    cartbar.classList.remove('translate-x-0', 'opacity-100');
+                }
+            });
+
+            // watch
+            const watchbar = document.getElementById('watchbar');
+            const watchbarOpenButton = document.getElementById('open-watchbar');
+            const watchbarMd = document.getElementById('open-watchbarMd');
+            const watchbarCloseButton = document.getElementById('close-watchbar');
+
+            watchbarOpenButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                watchbar.classList.remove('translate-x-full', 'opacity-0');
+                watchbar.classList.add('translate-x-0', 'opacity-100');
+            });
+
+            watchbarMd.addEventListener('click', (e) => {
+                e.stopPropagation();
+                watchbar.classList.remove('translate-x-full', 'opacity-0');
+                watchbar.classList.add('translate-x-0', 'opacity-100');
+            });
+
+            watchbarCloseButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                watchbar.classList.add('translate-x-full', 'opacity-0');
+                watchbar.classList.remove('translate-x-0', 'opacity-100');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!watchbar.contains(e.target) && !watchbarOpenButton.contains(e.target)) {
+                    watchbar.classList.add('translate-x-full', 'opacity-0');
+                    watchbar.classList.remove('translate-x-0', 'opacity-100');
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!watchbar.contains(e.target) && !watchbarMd.contains(e.target)) {
+                    watchbar.classList.add('translate-x-full', 'opacity-0');
+                    watchbar.classList.remove('translate-x-0', 'opacity-100');
+                }
+            });
+        }
+
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-call").innerHTML = data;
+
+            });
+
+
+    </script>
+    
+    <script src="js/header.js"></script>
+    <script src="js/watchlist.js"></script>
+</body>
+
+</html>

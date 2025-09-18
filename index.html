@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Webstore Home Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="shortcut icon" href="resources/Logo.svg" type="image/x-icon">
+    <script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="IndexOnloadFunctions();">
+
+    
+<!-- Header -->
+    <div id="header-placeholder"></div>
+    <!-- Header-->
+
+    <!-- First Carousel -->
+    <div class="relative w-full max-w-4xl mx-auto overflow-x-hidden mt-10 rounded-xl">
+
+        <div id="carousel-slides" class="flex transition-transform duration-500 ease-in-out">
+            <img src="resources/home/1.svg" class="w-full flex-shrink-0" />
+            <img src="resources/home/2.svg" class="w-full flex-shrink-0" />
+            <img src="resources/home/3.svg" class="w-full flex-shrink-0" />
+            <img src="resources/home/4.svg" class="w-full flex-shrink-0" />
+            <img src="resources/home/5.svg" class="w-full flex-shrink-0" />
+        </div>
+
+
+        <button onclick="prevSlide()"
+            class="absolute left-1 top-1/2 -translate-y-1/2 bg-opacity-50 text-white px-3 py-1 rounded-full cursor-pointer">
+            <img src="resources/cursol/icons8-arrow-50 (1).png" alt="">
+        </button>
+        <button onclick="nextSlide()"
+            class="absolute right-1 top-1/2 -translate-y-1/2 bg-opacity-50 text-white px-3 py-1 rounded-full cursor-pointer">
+            <img src="resources/cursol/icons8-arrow-50.png" alt="">
+        </button>
+
+
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+
+            <span id="dot-0" class="w-3 h-3 bg-gray-600 rounded-full cursor-pointer" onclick="goToSlide(0)"></span>
+            <span id="dot-1" class="w-3 h-3 bg-gray-600 rounded-full cursor-pointer" onclick="goToSlide(1)"></span>
+            <span id="dot-2" class="w-3 h-3 bg-gray-600 rounded-full cursor-pointer" onclick="goToSlide(2)"></span>
+            <span id="dot-3" class="w-3 h-3 bg-gray-600 rounded-full cursor-pointer" onclick="goToSlide(3)"></span>
+            <span id="dot-4" class="w-3 h-3 bg-gray-600 rounded-full cursor-pointer" onclick="goToSlide(4)"></span>
+        </div>
+    </div>
+    <!-- First Carousel -->
+
+    <!-- Second Carousel -->
+    <section>
+        <div class=" container mx-auto py-7 ">
+
+
+            <div class="  flex items-center justify-center p-3 mt-10">
+                <div class="max-w-7xl w-full mx-auto ">
+
+
+                    <!-- Start Slider -->
+                    <div data-hs-carousel='{
+  "loadingClasses": "opacity-0",
+  "isAutoPlay": true,
+  "isLoop": true,
+  "autoPlayInterval": 3000,
+  "slidesQty": {
+    "xs": 2,
+    "sm": 3,
+    "md": 4,
+    "lg": 6
+  }
+}' class="relative mb-10">
+
+                        <div class="w-full overflow-hidden  rounded-lg hs-carousel ">
+                            <div class="relative -mx-1 ">
+                                <div class="flex transition-transform duration-700 hs-carousel-body flex-nowrap">
+                                    <!-- Slide Item 1 -->
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/1.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Smart Tv
+                                                </div>
+
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">SmartTv</span>
+                                            <span class="flex items-center justify-center  text-sm ">9 items</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Repeat same block for more slides -->
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 bg-opacity-60 ease-in-out">
+                                                <img src="resources/cursol/2.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Spekears
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Speakers</span>
+                                            <span class="flex items-center justify-center  text-sm ">5 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/3.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Tablets
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Tablets</span>
+                                            <span class="flex items-center justify-center text-sm">15 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/4.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Laptops
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Laptops</span>
+                                            <span class="flex items-center justify-center  text-sm">5 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/5.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Airpods
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Airpods</span>
+                                            <span class="flex items-center justify-center  text-sm">10 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/6.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Mobile Phones
+                                                </div>
+                                            </div>
+                                            <span class="flex items-center justify-center mt-3 text-lg font-bold">Mobile
+                                                Phones</span>
+                                            <span class="flex items-center justify-center text-sm">9 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/7.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200   text-black text-sm font-medium">
+                                                    Headsets
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Headsets</span>
+                                            <span class="flex items-center justify-center text-sm">5 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/8.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Mouse
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Mouse</span>
+                                            <span class="flex items-center justify-center text-sm">15 items</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-1 hs-carousel-slide">
+                                        <div class="grid justify-center h-full">
+                                            <div
+                                                class="relative group h-28 w-28 bg-[#eaeaea] rounded-full mx-auto cursor-pointer overflow-hidden transition duration-300 ease-in-out bg-opacity-60">
+                                                <img src="resources/cursol/9.png"
+                                                    class="w-full h-full object-contain group-hover:opacity-20 transition duration-200" />
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200  text-black text-sm font-medium">
+                                                    Keyboard
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center justify-center mt-3 text-lg font-bold">Keyboard</span>
+                                            <span class="flex items-center justify-center text-sm">18 items</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add more slide items as needed -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation buttons -->
+                        <button type="button"
+                            class="absolute start-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center text-gray-800 hs-carousel-prev hover:bg-gray-200/80 focus:outline-none rounded-full w-8 h-8">
+                            <img src="resources/cursol/icons8-arrow-50 (1).png" alt="">
+                            <span class="sr-only">Previous</span>
+                        </button>
+
+                        <button type="button"
+                            class="absolute end-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center text-gray-800 hs-carousel-next hover:bg-gray-200/80 focus:outline-none rounded-full w-8 h-8">
+                            <img src="resources/cursol/icons8-arrow-50.png" alt="">
+                            <span class="sr-only">Next</span>
+                        </button>
+
+                        <!-- Dots (optional) -->
+                        <div
+                            class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex justify-center space-x-2 hs-carousel-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Slider -->
+
+        </div>
+    </section>
+    <!-- Second Carousel -->
+
+    <!-- Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-12 lg::grid-cols-12 gap-6 px-4 mb-10">
+        <!-- Image 1 -->
+        <div class="lg:col-span-4 md:col-span-6 col-span-1">
+            <div
+                class="shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <img src="resources/Headset Max 3rd Generation/1.png" alt="Design Image"
+                    class="w-full h-auto object-cover cursor-pointer">
+            </div>
+        </div>
+
+        <!-- Image 2 -->
+        <div class="lg:col-span-4 md:col-span-6 col-span-1">
+            <div
+                class="shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <img src="resources/Headset Max 3rd Generation/2.png" alt="Design Image"
+                    class="w-full h-auto object-cover cursor-pointer">
+            </div>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="lg:col-span-4 md:col-span-6 col-span-1">
+            <div
+                class="shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <img src="resources/Headset Max 3rd Generation/3.png" alt="Design Image"
+                    class="w-full h-auto object-cover cursor-pointer">
+            </div>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="lg:col-span-4 md:col-span-6 col-span-1">
+            <div
+                class="shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <img src="resources/Headset Max 3rd Generation/4.png" alt="Design Image"
+                    class="w-full h-auto object-cover cursor-pointer">
+            </div>
+        </div>
+
+        <!-- Image 5 -->
+        <div class="lg:col-span-4 md:hidden lg:block hidden">
+            <div
+                class="shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <img src="resources/Headset Max 3rd Generation/5.png" alt="Design Image"
+                    class="w-full h-auto object-cover cursor-pointer">
+            </div>
+        </div>
+
+        <!-- Image 6 -->
+        <div class="lg:col-span-4 md:hidden lg:block hidden">
+            <div
+                class="shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <img src="resources/Headset Max 3rd Generation/6.png" alt="Design Image"
+                    class="w-full h-auto object-cover cursor-pointer">
+            </div>
+        </div>
+    </div>
+    <!-- Cards -->
+
+    <!-- First -->
+    <section class=" px-4 md:px-10 py-10">
+        <div
+            class="flex items-center justify-between mb-6 h-12 bg-[#eaeaea] p-5 rounded-2xl shadow-sm hover:shadow-md transition duration-300">
+            <h2 class="md:text-xl sm:text-lg text-sm font-bold text-gray-800 uppercase">free shipping</h2>
+            <a href="search.html"
+                class="text-[#B43F3F] font-medium hover:underline flex items-center space-x-1 text-sm sm:text-lg md:text-xl">
+                <span>View More</span>
+                <span>&#8250;&#8250;</span>
+            </a>
+        </div>
+
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 " id="productCard_1">
+
+           
+    
+        </div>
+
+
+    </section>
+    <!-- First -->
+
+    <!-- Second -->
+    <section class=" px-4 md:px-10 py-10">
+        <div
+            class="flex items-center justify-between mb-6 h-12 bg-[#eaeaea] p-5 rounded-2xl shadow-sm hover:shadow-md transition duration-300">
+            <h2 class="md:text-xl sm:text-lg text-sm font-bold text-gray-800 uppercase">Brand New Products</h2>
+            <a href="search.html"
+                class="text-[#B43F3F] font-medium hover:underline flex items-center space-x-1 text-sm sm:text-lg md:text-xl">
+                <span>View More</span>
+                <span>&#8250;&#8250;</span>
+            </a>
+        </div>
+
+       <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 " id="productCard_2">
+
+           
+    
+        </div>
+
+
+    </section>
+    <!-- Second -->
+
+    <!-- Third -->
+    <section class=" px-4 md:px-10 py-10">
+        <div
+            class="flex items-center justify-between mb-6 h-12 bg-[#eaeaea] p-5 rounded-2xl shadow-sm hover:shadow-md transition duration-300">
+            <h2 class="md:text-xl sm:text-lg text-sm font-bold text-gray-800 uppercase">All Products</h2>
+            <a href="search.html"
+                class="text-[#B43F3F] font-medium hover:underline flex items-center space-x-1 text-sm sm:text-lg md:text-xl">
+                <span>View More</span>
+                <span>&#8250;&#8250;</span>
+            </a>
+        </div>
+
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 " id="productCard_3">
+
+           
+    
+        </div>
+
+
+    </section>
+    <!-- Third -->
+
+
+   
+
+
+
+
+    <!-- footer -->
+    <div id="footer-call"></div>
+    <!-- footer -->
+    <script src="js/index.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+    <script src="js/sign-out.js"></script>
+    <script src="js/header.js"></script>
+</body>
+
+</html>
