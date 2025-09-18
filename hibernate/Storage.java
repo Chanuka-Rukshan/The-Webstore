@@ -1,0 +1,55 @@
+package hibernate;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "storage")
+public class Storage implements Serializable {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    @Column(name = "value",length = 20,nullable = false)
+    private String value;
+    
+    
+
+    public Storage() {
+    }
+
+    
+    public int getId() {
+        return id;
+    }
+
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * @param value the value to set
+     */
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    
+    
+}
